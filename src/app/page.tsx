@@ -3,6 +3,8 @@ import { useForm, useFieldArray } from "react-hook-form";
 
 type formDataType = {
   name: string;
+  age: number;
+  bod: Date;
   email: string;
   social: {
     face: string;
@@ -56,12 +58,60 @@ export default function Home() {
             {...register("name", {
               required: {
                 value: true,
-                message: "this required",
+                message: "this required name",
               },
             })}
           />
           {errors.name && (
             <span className="text-red-500">{errors.name.message}</span>
+          )}
+        </div>
+        <div className="flex flex-col gap-2">
+          <label htmlFor="age" className="text-lg font-medium">
+            Age :
+          </label>
+          <input
+            className="bg-gray-200 px-4 py-2 outline-none rounded-lg text-base"
+            type="number"
+            id="age"
+            {...register("age", {
+              valueAsNumber: true,
+              // required: {
+              //   value: true,
+              //   message: "this required age",
+              // },
+              // validate: {
+              //   inAge: (felidValue) =>
+              //     (felidValue >= 60 || felidValue < 18) && "bad age",
+              // },
+            })}
+          />
+          {errors.age && (
+            <span className="text-red-500">{errors.age.message}</span>
+          )}
+        </div>
+        <div className="flex flex-col gap-2">
+          <label htmlFor="bod" className="text-lg font-medium">
+            Your BOD :
+          </label>
+          <input
+            className="bg-gray-200 px-4 py-2 outline-none rounded-lg text-base"
+            type="date"
+            id="bod"
+            {...register("bod", {
+              valueAsDate: true,
+              required: {
+                value: true,
+                message: "this required bod",
+              },
+              // validate: {
+              //   notAdmin: (felidValue) =>
+              //     felidValue !== "admin" || "cant admin",
+              // },
+            })}
+          />
+          {errors.bod && (
+            <span className="text-red-500">{errors.bod.message}</span>
           )}
         </div>
         <div className="flex flex-col gap-2">
